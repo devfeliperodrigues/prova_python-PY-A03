@@ -1,0 +1,48 @@
+'''Crie um programa em Python que permita adicionar, remover e visualizar alunos e seus números de matrícula usando um dicionário.
+O programa deve fornecer as seguintes funcionalidades:
+
+Adicionar um aluno: O usuário poderá adicionar o nome e o número de matrícula de um aluno ao dicionário.
+Remover um aluno: O usuário poderá remover um aluno do dicionário informando o número de matrícula.
+Visualizar todos os alunos: O usuário poderá visualizar todos os alunos registrados no dicionário,
+exibindo seus respectivos números de matrícula.
+O programa deve ser executado em um loop contínuo até que o usuário escolha sair.'''
+
+alunos = []
+
+while True:
+    print("1 - Adicionar um aluno")
+    print("2 - Remover um aluno")
+    print("3 - Visualizar todos os alunos")
+    print("4 - Sair")
+    opcao = int(input("Digite a opção desejada: "))
+
+    match opcao:
+        case 1:
+            nome = input("Digite o nome do aluno: ")
+            matricula = int(input("Digite a matrícula do aluno: "))
+            aluno = {"nome": nome, "matricula": matricula}
+            alunos.append(aluno)
+            print(f"Aluno {nome}, com matrícula de número {matricula}, adicionado com sucesso.")
+        case 2:
+            print("Alunos cadastrados:")
+            for aluno in alunos:
+                print(f"Matrícula: {aluno['matricula']} - Nome: {aluno['nome']}")
+            matricula = int(input("Digite a matrícula do aluno que deseja remover: "))
+            aluno_removido = None
+            for aluno in alunos:
+                if aluno["matricula"] == matricula:
+                    aluno_removido = aluno
+                    break
+            if aluno_removido:
+                alunos.remove(aluno_removido)
+                print(f"Aluno {aluno_removido['nome']}, com matrícula de número {matricula}, removido com sucesso.")
+            else:
+                print("Matrícula não encontrada.")
+        case 3:
+            print("Alunos cadastrados:")
+            for aluno in alunos:
+                print(f"Matrícula: {aluno['matricula']} - Nome: {aluno['nome']}")
+        case 4:
+            break
+        case _:
+            print("Opção inválida. Tente novamente.")
